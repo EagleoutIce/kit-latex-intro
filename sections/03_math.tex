@@ -1,5 +1,27 @@
 \section{Math}
+\subsection{Simple Formulas}
+\ltxpreview{MathModes}
+\begin{tcboutputlisting}
+\documentclass{article}
 
-\begin{frame}
+\begin{document}
+\begin{itemize}
+   \item 42 + 3=45
+   \item \(42 + 3=45\)
+   \item \(\displaystyle 42 + 3=45\)
+   \item \[42 + 3=45\]
+\end{itemize}
+\end{document}
+\end{tcboutputlisting}
 
+\begin{frame}{Typesetting formula}
+   \soldisablenumhl\begin{itemize}
+      \item \LaTeX{} offers two modes to typeset a formula (we are interested in):
+      \begin{description}
+         \item[Inline:] with \blatex{\\(a + b\\)} (to be used within text)
+         \item[Displaystyle:] with \blatex{\\[a + b\\]} (larger, centers the formula as well)
+      \end{description}
+      \item Spaces are treated differently, as \LaTeX{} will automatically apply spacing rules
+      \eblLoadLtx[morekeywords={[5]{\\displaystyle}}]{MathModes}{graphics options={trim=4cm 22cm 7.5cm 4cm, clip}}{righthand width=6cm}
+   \end{itemize}
 \end{frame}
