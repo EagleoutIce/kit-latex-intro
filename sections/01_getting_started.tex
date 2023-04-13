@@ -8,7 +8,7 @@
    \itemsep8pt
    \item You do not have to install anything to get started
    \item You can use Overleaf: \link{https://www.overleaf.com}{https://www.overleaf.com}
-   \item In the long run, however, an installed version of \LaTeX{} has several benefits
+   \item In the long run, however, we recommend an installed version of \LaTeX{}
    \begin{itemize}
       \itemsep4pt
       \item Linux already has a package available (\T{apt}: \bbash{sudo apt install texlive-full})\par
@@ -19,7 +19,7 @@
    \end{itemize}
 \end{itemize}
 \begin{tikzpicture}[@O]
-   \node[above left=2mm,yshift=6.75mm] at(current page.south east) {\scalebox{.6}{\usebox\TempBoxA}};
+   \node[above left=2mm,yshift=1.25cm] at(current page.south east) {\scalebox{.6}{\usebox\TempBoxA}};
 \end{tikzpicture}
 \end{frame}
 
@@ -33,13 +33,13 @@
 \end{tcboutputlisting}
 
 \begin{frame}{A simple \say{Hello World!}}
-   \only<handout:1>{\vspace*{-2mm}\eblLoadLtx{HelloWorld}{}{righthand width=.3\linewidth}
+   \only<handout:1>{\vspace*{-2mm}\eblLoadLtx{HelloWorld}{}{righthand width=.25\linewidth}
    \begin{tikzpicture}[@O]
-      \node[below right,xshift=4mm,yshift=2.5cm,align=left,font=\itshape] at(current page.west) {Compile by pressing the corresponding button\\or use \bbash{pdflatex}/\bbash{latexmk} from the commandline.};
+      \node[below right,xshift=6mm,yshift=2.5cm,align=left,font=\itshape] at(current page.west) {Compile by pressing the corresponding button\\or use \bbash{pdflatex}/\bbash{latexmk} from the commandline.};
    \end{tikzpicture}}
    \only<handout:2>{\eblLoadLtx{HelloWorld}{graphics options={trim=2cm 23cm 10cm 2cm, clip}}{}
    \begin{tikzpicture}[@O]
-      \node[below right,xshift=3.5mm,yshift=-2cm] at(current page.west) {From now on, examples will be cropped automatically.};
+      \node[below right,xshift=6mm,yshift=-2cm] at(current page.west) {From now on, examples will be cropped automatically.};
    \end{tikzpicture}}
 \end{frame}
 
@@ -53,7 +53,7 @@
 \node[right,desc] (a2) at(2.5,0.3) {For this example, we use \T{article}.};
 \draw[-Kite,w] (a2) -- ++(-.4,-0.6);
 
-\node[right,desc] (b) at(5.4,-.95) {The Preamble: Used to load packages and commands.};
+\node[right,desc] (b) at(5.4,-.95) {The Preamble: Used to load packages and commands};
 \draw[-Kite,w] (b) -- ++(-4.5,0);
 
 \draw [decorate,decoration={brace,amplitude=6pt,raise=4pt},yshift=0pt] (3.5,-1.05) -- ++(0,-1.5) node [desc,midway,right,xshift=0.45cm] {The main document};
