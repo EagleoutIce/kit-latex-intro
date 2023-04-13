@@ -24,13 +24,14 @@
 \tcbset{ebl@listing@other@out/.style={}}
 % #1 Name
 \def\ltxpreview#1{\tcbset{listing file=\ebl@prefix\jobname-#1-slidelst.tex,freeze pdf,ebl@listing@other@out}}
+\tcbset{ebl@listing@post/.style={}}
 \newcommand*\eblLoadLtx[4][]{\begingroup
 \tcbset{listing file=\ebl@prefix\jobname-#2-slidelst.tex, freeze pdf,ebl@listing@other@out}% <-- Use a unique name
 \tcbinputlisting{
     lstpresenterstyle,listing outside comment,pdf comment,run pdflatex,before skip=0pt,after skip=0pt,
     lower separated=false,
     listing options={style=sol@SOPRA,style=LSTADVANCED,language=lLatex,morekeywords={[5]{\\Dieter,\\borange,\\bgreen,\\bred,\\bcolor,\\bteal}},morekeywords={[3]{episch}},#1},#4,
-    sidebyside,sidebyside gap=6mm,raster columns=1,comment style={width=.5\linewidth,#3}
+    sidebyside,sidebyside gap=6mm,raster columns=1,comment style={width=.5\linewidth,#3},ebl@listing@post
 }\endgroup}
 \DeclareTCBListing{sclatex}{% preview latex code
     O{} % Listing Args

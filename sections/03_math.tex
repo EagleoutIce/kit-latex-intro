@@ -17,11 +17,87 @@
 \begin{frame}{Typesetting formula}
    \soldisablenumhl\begin{itemize}
       \item \LaTeX{} offers two modes to typeset a formula (we are interested in):
-      \begin{description}
+      \begin{description}[Displaystyle:]
          \item[Inline:] with \blatex{\\(a + b\\)} (to be used within text)
          \item[Displaystyle:] with \blatex{\\[a + b\\]} (larger, centers the formula as well)
       \end{description}
       \item Spaces are treated differently, as \LaTeX{} will automatically apply spacing rules
-      \eblLoadLtx[morekeywords={[5]{\\displaystyle}}]{MathModes}{graphics options={trim=4cm 22cm 7.5cm 4cm, clip}}{righthand width=6cm}
+      \eblLoadLtx[morekeywords={[5]{\\displaystyle}}]{MathModes}{graphics options={trim=4cm 22cm 7.5cm 4cm, clip}}{righthand width=.4\linewidth}
    \end{itemize}
+\end{frame}
+
+\savebox\TempBoxA{\fancyqr[l color=kit-green!60!black,r color=kit-green!60!kit-blue!60!black,height=3.75cm,level=H]{https://detexify.kirelabs.org/classify.html}}
+\begin{frame}{Special symbols}
+   \begin{itemize}
+      \itemsep8pt
+      \item There are a lot of special symbols you can use (\blatex{\\alpha}, \blatex{\\sin}, \blatex{\\infty},~\ldots)
+      \item Although they are intuitive, you can use \link{https://detexify.kirelabs.org/classify.html}{detexify.kirelabs.org} to draw the symbol you want and get the corresponding \LaTeX-command!
+      \item You can use \blatex{^\{X\}} and \blatex{\_\{Y\}} to write (even nested) super- and subscripts
+   \end{itemize}
+   \begin{tikzpicture}[@O]
+      \node[above left=2mm,yshift=1.25cm] at(current page.south east) {\scalebox{.6}{\usebox\TempBoxA}};
+   \end{tikzpicture}
+\end{frame}
+
+\ltxpreview{SimpleFormulas}
+\begin{tcboutputlisting}
+\documentclass{article}
+
+\begin{document}
+When calculating \(\sum_{i = 1}^\infty \frac{2}{i^{2}} \neq 0\) one must be careful!
+You are advised to eat a piece of \(\pi\) first or calculate \(\sin(\pi)\).
+Is it \(1\), \(-1\), \(\pm1\), or even \(\geq 1\)?
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Some simple Formulas}
+\soldisablenumhl\tcbset{ebl@listing@post/.style={sidebyside=false}}\begin{itemize}
+   \item Let's combine our math-knowledge:
+   \eblLoadLtx[morekeywords={[5]{\\displaystyle}}]{SimpleFormulas}{graphics options={trim=4cm 24cm 3cm 4cm, clip}}{listing above comment,width=\linewidth}
+\end{itemize}
+\end{frame}
+
+\subsection{Advanced Math Typesetting}
+\begin{frame}{The \T{mathtools} package}
+   \begin{itemize}
+      \itemsep8pt
+      \item The \T{\link{https://www.ctan.org/pkg/mathtools}{mathtools}} package offers a lot of useful features for math typesetting
+      \item Together with it, we want to learn about two important environments:
+         \begin{description}[equation:]
+            \item[equation:] For a single, numbered formula you can reference
+            \item[align:] For aligning multiple formulas using the \blatex{\&}-character
+         \end{description}
+      \item Some useful notes: \begin{itemize}
+         \item Within formulas you can use the \blatex{\\text}-command to write \say{normal text}
+         \item We can label equations with \blatex{\\label\{x\}} and reference them with \blatex{\\ref\{x\}} in the text
+         \item Some characters (like \blatex{\&} or \blatex{\#}) are reserved by \LaTeX. Escape them with a preceding backslash (e.g., \blatex{\\\&})
+         \item The special tilde \blatex{\~} can be used to insert a non-breaking space (e.g., useful for references)
+      \end{itemize}
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{AdvancedFormulas}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{mathtools}
+
+\begin{document}
+My formula~\ref{eq:example}:
+\begin{equation}
+   \frac{n!}{a! \cdot (n-a)!} = \binom{n}{a}
+   \label{eq:example}
+\end{equation}
+Another one:
+\begin{align}
+   f(0) &= \sqrt{1} \label{eq:example2}\\
+   f(n) &= \begin{cases}
+      f(n - 2) & \text{if } n \bmod 2 = 0 \\
+      f(n - 1) - f(n - 2) & \text{otherwise}
+   \end{cases}
+\end{align}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Advanced math example}
+   \soldisablenumhl\lstfs{9}\eblLoadLtx[morekeywords={[5]{\\displaystyle}}]{AdvancedFormulas}{graphics options={trim=4cm 18cm 3cm 4cm, clip},width=\linewidth}{righthand width=.5\linewidth}
 \end{frame}
