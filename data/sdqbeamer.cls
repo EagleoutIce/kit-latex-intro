@@ -285,6 +285,7 @@
 \def\GroupLogoPlace#1{\includegraphics[width=\@grouplogowidth,height=20mm,keepaspectratio]{#1}}
 \def\kiturl#1{\def\@kiturl{#1}}
 \kiturl{www.kit.edu}
+\def\TitleImageLoad#1{\includegraphics[height=40mm]{#1}}
 
 \newcommand{\KITtitleframe}{
   \begin{frame}[plain]
@@ -362,7 +363,7 @@
     \ifdefined\@titleimage
       \ifx\@titleimage\empty \else%
         \pgftext[at=\pgfpoint{.5\paperwidth}{0mm},center,bottom]{%
-          \includegraphics[height=40mm]{logos/\@titleimage}
+          \TitleImageLoad{logos/\@titleimage}%
         }
         \fi % Bei Aufruf von \titleimage{} leeren Rahmen anzeigen.
       \else
