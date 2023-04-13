@@ -1,0 +1,34 @@
+name: status check compile
+
+"on":
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+          lfs: true
+
+      - name: 📄 Compile the Documentation
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: kit-latex-intro.tex
+      - name: Commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f "build/kit-latex-intro.pdf"
+          git commit -m "Newly compiled data"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
