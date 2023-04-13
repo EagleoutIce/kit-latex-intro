@@ -1,4 +1,4 @@
-name: status check compile
+name: build the documentation
 
 "on":
   push:
@@ -19,6 +19,8 @@ jobs:
       - name: 📄 Compile the Documentation
         uses: xu-cheng/latex-action@v2
         with:
+          # ensure local
+          pre_compile: "tlmgr remove --force tikzpingus"
           root_file: kit-latex-intro.tex
       - name: Commit
         run: |
