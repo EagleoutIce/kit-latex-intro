@@ -1,0 +1,52 @@
+% beamer-latex-preview.sty
+% Author: Florian Sihler, 30.09.2020
+% Utility commands dependend on listings and tcolorbox
+% to compile and present latex-files. Used to be with beamer.
+\ProvidesPackage{beamer-latex-preview}[2019/10/25 v1.0.0 Compile and Preview LaTeX2e-Codes in LaTeX-Beamer]
+\RequirePackage{lilly-color}
+\tcbuselibrary{listings,xparse,raster}
+\definecolor{MudWhite}{RGB}{245,245,243}
+\definecolor{Charcoal}{RGB}{54,69,79}
+\tcbset{
+  lstpresenterstyle/.style={%
+    colback=MudWhite!5, boxrule=\p@,enhanced jigsaw, listing only,
+    breakable=true, opacityback=.9,arc is angular=5mm, fuzzy halo=.1mm with MudWhite,
+    top=.11mm, bottom=.11mm, colframe=Charcoal,
+  }
+}
+\lstdefinestyle{LSTADVANCED}{
+    style=sol@SOPRA,backgroundcolor={},rulecolor={},
+    numberstyle=\color{gray}\footnotesize\sffamily\sol@styles@lst@linenumbers,
+    xleftmargin=12pt,xrightmargin=3pt,numbers=left,
+    numbersep=12pt,frame=none
+}
+\def\eblprefix#1{\def\ebl@prefix{#1}}
+\eblprefix{helper-}
+\tcbset{ebl@listing@other@out/.style={}}
+% #1 Name
+\def\ltxpreview#1{\tcbset{listing file=\ebl@prefix\jobname-#1-slidelst.tex,freeze pdf,ebl@listing@other@out}}
+\def\eblLoadLtx#1#2#3{\begingroup
+\tcbset{listing file=\ebl@prefix\jobname-#1-slidelst.tex, freeze pdf,ebl@listing@other@out}% <-- Use a unique name
+\tcbinputlisting{
+    lstpresenterstyle,listing outside comment,pdf comment,run pdflatex,
+    lower separated=false,
+    listing options={style=sol@SOPRA,style=LSTADVANCED,language=lLatex,morekeywords={[5]{\\Dieter,\\borange,\\bgreen,\\bred,\\bcolor,\\bteal}},morekeywords={[3]{episch}}},#3,
+    sidebyside,sidebyside gap=6mm,raster columns=1,comment style={width=.5\linewidth,#2}
+}\endgroup}
+\DeclareTCBListing{sclatex}{% preview latex code
+    O{} % Listing Args
+    O{} % TCB Args
+}{%
+  enhanced jigsaw,breakable,blankest,enlarge top by=3\p@,enlarge bottom by=3\p@,listing side text,righthand width=3.5cm,before lower={\vspace*{-.75\baselineskip}},
+  listing options={%
+    style=sol@SOPRA,
+    language=lLatex,#1},#2, after={\\[-.25\baselineskip]},
+}{}
+\DeclareDocumentEnvironment{slatex}{}{\presentlst{lLatex}}{\endpresentlst}
+% Listing Args | TCB Args | Language
+\DeclareTCBListing{presentlst}{O{} O{} m}{%
+lstpresenterstyle, enlarge top by=3pt,enlarge bottom by=3pt,
+listing options={%
+  style=sol@SOPRA,style=LSTADVANCED,
+  language=#3,#1},#2}{}
+\endinput

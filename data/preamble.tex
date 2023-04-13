@@ -1,16 +1,55 @@
+\PassOptionsToPackage{babel}{csquotes}
 \RequirePackage{etoolbox}
 \makeatletter
-\appto\input@path{{logos/}{data/}{lib/}{lib/tikzpingus/tex}}
-\documentclass[en]{sdqbeamer}
+\appto\input@path{{logos/}{data/}{lib/}{lib/tikzpingus/tex/}{lib/fancyqr/}{lib/fancy-underline/}{lib/sopra-collection/}{lib/sopra-collection/sopra-listings}}
+\documentclass[en,handout]{sdqbeamer}
+
+\usepackage{import}
 
 % use specifically the package in the submodule
 \usepackage{lib/tikzpingus/tex/tikzpingus}
+\usepackage{lib/fancy-underline/fancy-underline}
+\makeatletter
+\let\ULdepth\p@
+\def\fancyulbackground{white}% so that it adapts with the beamer
+\colorlet{url@line@color}{kit-blue!26!white}
+\fancyulcolor{url@line@color}
+% we make the auto detection of the depth bigger
+\def\update@ul{\setbox\z@\hbox{{(j}}\edef\ULthickness{\the\dimexpr.235\dp\z@}}
+% define a link macro that can be used with href and fancyul
+\DeclareRobustCommand*\link{\hyper@normalise\link@do}
+\def\link@do#1#2{\leavevmode\hskip-2\p@\href{#1}{\update@ul\hskip2\p@\fancyul{#2}}}% thinspace for some nicer padding
+\DeclareRobustCommand*\hlink{\hyper@normalise\hlink@do}
+\def\hlink@do#1#2{\leavevmode\hskip-2\p@\hyperlink{#1}{\update@ul\hskip2\p@\fancyul{#2}}}%
+
+\AtBeginDocument{%
+\long\def\beamer@ref#1{\hlink@do{#1}{{\beamer@origref*{#1}}}}% the extra set of braces is for soul so that it can work with braces
+}
+\makeatother
+
+\usepackage[most]{tcolorbox}
+\usepackage{lib/util/beamer-latex-preview}
+\eblprefix{helper-}
+\usepackage{lib/fancyqr/fancyqr}
+\usepackage[encoding,print,highlights,nodefaultfont]{lib/sopra-collection/sopra-listings/sopra-listings}
+\solLoadLanguage{latex,bash}
+\lstcolorlet{keywordA}{kit-blue}
+\lstcolorlet{keywordB}{kit-green50}
+\lstcolorlet{keywordC}{kit-blue60}
+\lstcolorlet{command}{kit-blue}
 
 \titleimage{X} % fake by load so we can have pingus :3
 % we force scale for fancy(er) proprtions
 \def\TitleLetter#1{\scalebox{2}{\textbf{\fontsize{100pt}{100pt}\selectfont#1}}}
 \def\BannerLetter#1#2{\raisebox{-1cm}{\textbf{\fontsize{100pt}{100pt}\selectfont#2}}}
 
+\let\say\enquote
+\tikzset{@O/.style={overlay,remember picture}}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing}
+
+\tcbset{
+  lstpresenterstyle/.style={blankest,listing only,breakable=true,left=2.5mm}
+}
 
 \makeatletter
 % https://tex.stackexchange.com/a/545948
@@ -38,17 +77,17 @@
 \newsavebox\TTHolder
 \newsavebox\SecondE
 \newsavebox\SittingPengu
-\def\TitleImageLoad#1{%
-\pingudefaults{eyes wink,body type=legacy}% target: 4cm
-\savebox\PHolder{\tikz{\pingu[xshift=2cm,yshift=-5mm,small,wings grab,headband=kit-red100,name=@p,staff left,staff left raise=-5mm, staff right,staff right raise=0mm,left item angle=-15,right item angle=-15]}}
-\savebox\SHolder{\tikz{\pingu[:back,body=pingu@main!70!gray,wings wave,body type=chubby,hair=kit-orange100]}}
+\def\TitleImageLoad#1{%% target: 4cm
+\pingudefaults{eyes wink,body type=legacy,:mix-all=87!pingu@white!87!pingu@black}
+\savebox\PHolder{\tikz{\pingu[xshift=2cm,yshift=-5mm,small,wings grab,headband=kit-red100,name=@p,staff left,staff left raise=-5.5mm, staff right,staff right raise=0mm,left item angle=-15,right item angle=-15]}}
+\savebox\SHolder{\tikz{\pingu[:back,body=pingu@main!90!gray,wings wave,body type=chubby,hair=kit-orange100]}}
 \savebox\SecondE{\scalebox{.7}{\rotatebox{30}{\TitleLetter{e}}}}
 \savebox\SittingPengu{\tikz{\pingu[feet=sit, eyes shiny,halo,heart,small,body type=chubby]}}
-\savebox\TTHolder{\tikz{\pingu[wings wave, banner, banner={tt}, eyes sad, body type=tilt-right, right foot sit,banner height=1.33cm,banner font=\BannerLetter]}}
+\savebox\TTHolder{\tikz{\pingu[wings wave, banner, banner={tt}, eyes angry, body type=tilt-right, right foot sit,banner height=1.33cm,banner font=\BannerLetter]}}
 \resizebox*!{4cm}{\begin{tikzpicture}
    \pingu[left wing wave,construction helmet, tie=kit-purple100,name=T]
    \pgfonlayer{very-background}
-      \draw[gray] ([xshift=-5cm]T-foot-right) -- ++(49.5cm,0);
+      \draw[gray] ([xshift=-6cm]T-foot-right) -- ++(49cm,0);
    \endpgfonlayer
    \node[above right=-16mm] (@T) at (T-wing-left-tip) {\TitleLetter{T}};
 
@@ -60,7 +99,7 @@
    \pgfonlayer{background}
    \node[above,yshift=5mm,xshift=3.25mm] (@p) at(Y.east) {\TitleLetter{p}};
    \endpgfonlayer
-   \node[right=-2.1cm,yshift=5.75mm] (@e) at(@p.south east) {\rotatebox{30}{\TitleLetter{\mdseries\color{kit-green100}e}}};
+   \node[right=-2.1cm,yshift=5.75mm] (@e) at(@p.south east) {\rotatebox{30}{\TitleLetter{e}}};
    \node[right=3mm,yshift=13mm] (s) at(@e.north) {\rotatebox{90}{\TitleLetter{\texttt{S}}}};
    \node[below] (@s) at (s.north|-@Top) {\rotatebox{180}{\usebox\SHolder}};
 
@@ -68,7 +107,7 @@
    \node[above=-2mm] at(@e2.north) {\usebox\SittingPengu};
 
    \node[above right,yshift=-1.5mm,xshift=1cm] (tt) at(@e2.east|-T-foot-right) {\usebox\TTHolder};
-   \node[right,yshift=-1.5mm] at(tt.east) {\TitleLetter{\rotatebox{-12}{I}\kern-16pt\smash{\(\overset{\raisebox{-2cm}{\text{\Large\(\Psi\)}}}{\Pi}\)}\smash{\SetG}}};
+   \node[right,yshift=-1.5mm] at(tt.east) {\TitleLetter{\rotatebox{-12}{I}\kern-16pt\smash{\(\Pi\)}\smash{\SetG}}};
 \end{tikzpicture}}%
 }
 
@@ -83,9 +122,11 @@
 % Bibliography
 
 \usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
-\addbibresource{templates/example.bib}
+% \addbibresource{templates/example.bib}
 \bibhang1em
 
 \AtBeginDocument{
 \KITtitleframe
 }
+
+\newsavebox\TempBoxA
