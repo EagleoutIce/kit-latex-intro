@@ -3,5 +3,5 @@
 Clone with:
 
 ```shell
-git clone --recursive <TODO: url>
+git clone --recursive git@github.com:EagleoutIce/kit-latex-intro.git
 ```
