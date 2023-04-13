@@ -1,29 +1,4 @@
-\documentclass[18pt,english]{beamer}
-
-\usepackage{templates/beamerthemekitwide}
-%\usepackage{templates/beamerthemekitwidenosidebar}
-
-\beamertemplatenavigationsymbolsempty
-
-%% TITLE PICTURE
-
-% if a custom picture is to be used on the title page, copy it into the 'logos'
-% directory, in the line below, replace 'mypicture' with the
-% filename (without extension) and uncomment the following line
-% (picture proportions: 63 : 20 for standard, 169 : 40 for wide
-% *.jpg/*.png/*.pdf if you use pdflatex
-
-%\titleimage{mypicture}
-
-%% TITLE LOGO
-
-% for a custom logo on the front page, copy your file into the 'logos'
-% directory, insert the filename in the line below and uncomment it
-
-\titlelogo{mylogo}
-
-% *.jpg/*.png/*.pdf if you use pdflatex
-
+\input{data/preamble.tex}
 %% TikZ INTEGRATION
 
 % the presentation starts here
@@ -41,14 +16,7 @@
 \bibhang1em
 
 \begin{document}
-
-% change the following line to "ngerman" for German style date and logos
-\selectlanguage{english}
-
-%title page
-\begin{frame}
-\titlepage
-\end{frame}
+\KITtitleframe
 
 %table of contents
 \begin{frame}{Outline/Gliederung}
