@@ -31,12 +31,16 @@
 \usepackage{lib/util/beamer-latex-preview}
 \eblprefix{helper-}
 \usepackage{lib/fancyqr/fancyqr}
-\usepackage[encoding,print,highlights,nodefaultfont]{lib/sopra-collection/sopra-listings/sopra-listings}
+\usepackage[encoding,print,highlights,nodefaultfont,fakeminted]{lib/sopra-collection/sopra-listings/sopra-listings}
+\solSetNumSep{4pt}
+\lstset{breakindent=2pt}
+\solsetmintedstyle{plain number}
 \solLoadLanguage{latex,bash}
 \lstcolorlet{keywordA}{kit-blue}
-\lstcolorlet{keywordB}{kit-green50}
-\lstcolorlet{keywordC}{kit-blue60}
+\lstcolorlet{keywordB}{kit-green70}
+\lstcolorlet{keywordC}{kit-blue70}
 \lstcolorlet{command}{kit-blue}
+\lstcolorlet{numbers}{kit-purple70}
 
 \titleimage{X} % fake by load so we can have pingus :3
 % we force scale for fancy(er) proprtions
@@ -87,7 +91,7 @@
 \resizebox*!{4cm}{\begin{tikzpicture}
    \pingu[left wing wave,construction helmet, tie=kit-purple100,name=T]
    \pgfonlayer{very-background}
-      \draw[gray] ([xshift=-6cm]T-foot-right) -- ++(49cm,0);
+      \draw[gray] ([xshift=-6cm]T-foot-right) -- ++(50cm,0);
    \endpgfonlayer
    \node[above right=-16mm] (@T) at (T-wing-left-tip) {\TitleLetter{T}};
 

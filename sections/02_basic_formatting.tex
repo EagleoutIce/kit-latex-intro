@@ -1,6 +1,196 @@
 \section{Basic Formatting}
 
+\subsection{Commands}
 
-\begin{frame}
+\begin{frame}[fragile]{What is a \say{Command}?}
+\begin{itemize}
+   \itemsep8pt
+   \item \LaTeX-commands start with a backslash (\textbackslash)
+{\color{lightgray}\begin{minted}[morekeywords={\\documentclass,\\begin,\\end},alsoletter={\\},morecomment={[l]{\%}}]{void}
+\documentclass{article}
+\begin{document}
+Hallo Welt
+\end{document}
+\end{minted}
+}
+   \item Arguments are passed in curly braces (e.g., \T{article})
+   \item (Line-)Comments start with a percent sign (\T{\%})
+\end{itemize}
+\end{frame}
 
+\subsection{Shapes, Series, and Spacing}
+\ltxpreview{BasicFormatting}
+\begin{tcboutputlisting}
+\documentclass{article}
+
+\begin{document}
+ Hello, \textbf{just \textit{great}} \texttt{format}.
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}[fragile]{First formatting commands}
+   \begin{itemize}
+      \itemsep8pt
+      \item To write in \say{\textbf{b}old\textbf{f}ace}, \say{\textbf{it}alic}, or \say{\textbf{t}ele\textbf{t}ype}, use the corresponding commands:
+      \eblLoadLtx{BasicFormatting}{graphics options={trim=4cm 24cm 11cm 4cm, clip}}{righthand width=.3\linewidth}
+      \item As you can see, these commands can be nested (as long as the font supports this)
+      \item Later, we will define our own commands for this  (e.g., \blatex[morekeywords={[5]{\\algorithm}}]{\\algorithm\{x\}} instead of \blatex{\\textbf\{\\textit\{x\}\}})
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{FirstDocument}% larger group to account for re-include
+\begin{tcboutputlisting}
+\documentclass{article}
+
+\begin{document}
+\textbf{1. Things I like} \\
+- Penguins \\- Ducks \\
+
+\textbf{2. Things I do not like}\\
+Word, PowerPoint, and sentences deliberately stretched so they force a \textit{line break}.
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{A simple document}
+   \soldisablenumhl\begin{itemize}
+      \item Together with \blatex{\\\\} which forces a new line we can create a simple document:
+      \eblLoadLtx{FirstDocument}{graphics options={trim=4cm 21.5cm 3.25cm 4cm, clip}}{righthand width=6cm}
+      \item However, please be aware that you should not force line breaks \say{real} document (there are better ways)
+      \item Furthermore, you should refrain from using low-level markup-commands like \blatex{\\textbf} directly
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{SpacingExample}% larger group to account for re-include
+\begin{tcboutputlisting}
+\documentclass{article}
+
+\begin{document}
+Hello    World
+
+Amazing! Sentence
+\end{document}
+\end{tcboutputlisting}
+\begin{frame}{The importance of new lines}
+   \begin{itemize}
+      \item A simple line break will be transformed to a space
+      \item Multiple spaces collapse to a single space
+      \item An empty line starts a new paragraph (\blatex{\\par}) which is indented by default (by \blatex{\\parindent})
+      \item Multiple empty lines will be collapsed to a single empty line
+      \eblLoadLtx[columns=flexible]{SpacingExample}{graphics options={trim=4cm 23cm 11cm 4cm, clip}}{righthand width=6cm}
+   \end{itemize}
+\end{frame}
+
+\subsection{Sections and Lists}
+
+\ltxpreview{FirstDocumentWithToc}
+\begin{tcboutputlisting}
+\documentclass{article}
+
+\begin{document}
+\tableofcontents
+\section{Things I like}
+- Penguins \\- Ducks
+
+\section{Things I do not like}
+\subsection{Word!}
+Word, PowerPoint,...
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Sections}
+   \begin{itemize}
+      \item Labeling your segments with \soldisablenumhl\blatex{\\textbf\{1. My Name\}} is very inconvenient
+      \item For this, \LaTeX provides \blatex{\\section}, \blatex{\\subsection}, and more (depending on the documentclass)
+      \item This allows you to create a table of contents as well!
+      \eblLoadLtx{FirstDocumentWithToc}{graphics options={trim=4cm 17cm 3.5cm 4cm, clip}}{righthand width=6cm}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{How \LaTeX{} produces the table of contents}
+   \begin{itemize}
+      \itemsep8pt
+      \item When reading your document, \LaTeX{} collects all \blatex{\\section}, \blatex{\\subsection},~\ldots{} commands and writes them to a separate file
+      \item If \LaTeX{} is run again it can use the information in this file (ending in \T{.toc}) to typeset the table of contents
+      \item If you compile your document manually, you require a second run to update the table of contents
+      \item Tools like \bbash{latexmk} or an IDE automates this for you
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{FirstDocumentItemize}
+\begin{tcboutputlisting}
+\documentclass{article}
+
+\begin{document}
+\section{Things I like}
+\begin{itemize}
+   \item Penguins
+   \item Ducks
+\end{itemize}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Items and enumerations}
+   \begin{itemize}
+      \item Similar to sections, \LaTeX{} provides nicer ways to create lists
+      \item For unordered lists, it offers the \blatex{itemize}, for ordered lists the \blatex{enumerate} environment
+      \item Let's look at an example:
+      \eblLoadLtx{FirstDocumentItemize}{graphics options={trim=4cm 23cm 9cm 4cm, clip}}{righthand width=6cm}
+   \end{itemize}
+\end{frame}
+
+\subsection{Colors and Packages}
+\ltxpreview{ColorExample}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{xcolor}
+\definecolor{myOwnBlue}{RGB}{0, 100, 224}
+
+\begin{document}
+\textcolor{orange}{Orange Text!}
+\textcolor{myOwnBlue}{Blue Text!}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Colors}
+   \begin{itemize}
+      \item In order to use colors in \LaTeX{}, we want to use our first package!
+      \item For this, we will use \T{\link{https://www.ctan.org/pkg/xcolor}{xcolor}} and load it with \blatex{\\usepackage\{xcolor\}}
+      \item We can use predefined colors (\blatex{\\textcolor\{<color>\}\{x\}}), or define our own!
+      \eblLoadLtx{ColorExample}{graphics options={trim=4cm 22.5cm 11cm 4cm, clip}}{righthand width=6cm}
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{PreambleExample}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+
+\begin{document}
+Hello!
+\end{document}
+
+\end{tcboutputlisting}
+\begin{frame}{A default Preamble}
+   \begin{itemize}
+      \item Besides \link{https://www.ctan.org/pkg/xcolor}{xcolor}, there are several packages useful in every \LaTeX-Document
+      \begin{itemize}
+         \item \T{\link{https://www.ctan.org/pkg/inputenc}{inputenc}} and \T{\link{https://www.ctan.org/pkg/fontenc}{fontenc}} to ensure consistent encodings
+         \item \T{\link{https://www.ctan.org/pkg/babel}{babel}} for advanced language support (hyphenation,~\ldots)
+         \item \T{\link{https://www.ctan.org/pkg/microtype}{microtype}} for improved micro typography
+      \end{itemize}
+      \item Some of them take (optional) arguments in square brackets
+      \eblLoadLtx{PreambleExample}{graphics options={trim=4cm 24cm 11cm 4cm, clip}}{righthand width=6cm}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Comments regarding your Preamble}
+   \begin{itemize}
+      \itemsep10pt
+      \item With time, you will build your own preamble
+      \item While several packages have a lot of package-options and some of them have interactions, you learn them rather quickly and on a need-to-use basis
+      \item For example, if you want to configure babel for a german text, use \T{ngerman} (\say{new-german})
+   \end{itemize}
 \end{frame}
