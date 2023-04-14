@@ -1,4 +1,6 @@
 \section{Listings}
+\def\Listings{\texorpdfstring{\T{\link{https://www.ctan.org/pkg/listings}{listings}}}{\T{listings}}\xspace}
+\def\Minted{\texorpdfstring{\T{\link{https://www.ctan.org/pkg/minted}{minted}}}{\T{minted}}\xspace}
 \ltxpreview{MyFirstListing}
 \begin{tcboutputlisting}
 \documentclass{article}
@@ -13,11 +15,11 @@ public static void main(String[] args) {
 \end{document}
 \end{tcboutputlisting}
 
-\subsection{The \T{listings} Package}
-\begin{frame}{Typesetting code with the \T{listings} package}
+\subsection[The listings Package]{The \Listings Package}
+\begin{frame}{Typesetting code with the \Listings package}
    \begin{itemize}
       \item As some characters have a special meaning in \LaTeX{} (\T{\textbackslash}, \T{\#}, spaces~\ldots), we cannot just \say{paste} source code
-      \item With the \T{\link{https://www.ctan.org/pkg/listings}{listings}} package however, we can typeset source code in a very flexible way!
+      \item With the \Listings package however, we can typeset source code in a very flexible way!
       \item Let's look at an example with the \blatex{lstlisting} environment:
       \eblLoadLtx[deletekeywords={[3]{java}}]{MyFirstListing}{graphics options={trim=4cm 23.25cm 6cm 4cm, clip}}{righthand width=.4\linewidth}
    \end{itemize}
@@ -91,14 +93,45 @@ public static void main(String[] args) {
          \item You can create your own code-environment (e.g., with defaults) using \solGet{command}{\textbackslash lstnewenvironment}
          \item You can create a letter shortcut with \solGet{command}{\textbackslash lstMakeShortInline}
          \item With \T{numbers=left} you can add line numbers on the left side
-         \item \T{showstringspaces=false} removes the \T{\textvisiblespace} symbols within strings
+         \item \T{showstringspaces=false} removes the \say{\T{\textvisiblespace}} symbols within strings
          \item All code shown in this presentation is typeset with this package
       \end{itemize}
-      \item If you want to enter umlauts or perform replacements, have a look at literates and \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings\#Encoding_issue}{wikibooks}
+      \item If you want to typeset umlauts or perform replacements, have a look at literates and \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings\#Encoding_issue}{wikibooks}
    \end{itemize}
 \end{frame}
 
-\subsection{The \T{minted} Package}
-\begin{frame}
 
+\subsection[The minted Package]{The \Minted Package}
+
+\ltxpreview{MyMintedListing}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{minted}
+
+\begin{document}
+\begin{minted}{java}
+public static void main(String[] args) {
+   System.out.println("Hello World!");
+}
+\end{minted}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{The \Minted package}
+   \begin{itemize}
+      \item The \Minted uses \T{\link{https://pygments.org/}{pygments}} to highlight source code
+      \item As this package requires to call an external program (which has to be installed for that), you need to enable \textit{-\kern0pt-shell-escape} (if you use an IDE you may have to search for the option)
+      \item Besides that, the basic workflow is rather similar
+      \eblLoadLtx[deletekeywords={[3]{java}}]{MyMintedListing}{graphics options={trim=4cm 21.75cm 6cm 4cm, clip}}{righthand width=.4\linewidth}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{\Minted vs. \Listings}
+   \begin{itemize}
+      \itemsep8pt
+      \item While \Minted has more powerful presets (by using \T{\link{https://pygments.org/}{pygments}}), it is way harder to customize
+      \item Especially if you want to insert arbitrary markers or perform replacements, \Listings allows this far simpler
+      \item Yet, play with both and use the one that fits your needs best\\
+         (the author of this introduction prefers \Listings)
+   \end{itemize}
 \end{frame}
