@@ -35,11 +35,11 @@
 \begin{frame}{A simple \say{Hello World!}}
    \only<handout:1>{\vspace*{-2mm}\eblLoadLtx{HelloWorld}{}{righthand width=.25\linewidth}
    \begin{tikzpicture}[@O]
-      \node[below right,xshift=6mm,yshift=2.5cm,align=left,font=\itshape] at(current page.west) {Compile by pressing the corresponding button\\or use \bbash{pdflatex}/\bbash{latexmk} from the commandline.};
+      \node[below right,xshift=6mm,yshift=2.5cm,align=left,font=\itshape\footnotesize,gray] at(current page.west) {Compile by pressing the corresponding button\\or use \bbash{pdflatex}/\bbash{latexmk} from the commandline.};
    \end{tikzpicture}}
    \only<handout:2>{\eblLoadLtx{HelloWorld}{graphics options={trim=2cm 23cm 10cm 2cm, clip}}{}
    \begin{tikzpicture}[@O]
-      \node[below right,xshift=6mm,yshift=-2cm,font=\itshape] at(current page.west) {From now on, examples will be cropped automatically.};
+      \node[below right,xshift=6mm,yshift=-2cm,font=\itshape\footnotesize,gray] at(current page.west) {From now on, examples will be cropped automatically.};
    \end{tikzpicture}}
 \end{frame}
 

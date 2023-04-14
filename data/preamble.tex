@@ -29,7 +29,7 @@
 }
 \makeatother
 
-\usepackage{cancel,xspace}
+\usepackage{array,cancel,xspace}
 
 \usepackage[most]{tcolorbox}
 \usepackage{lib/util/beamer-latex-preview}
@@ -86,12 +86,13 @@
 \newsavebox\SecondE
 \newsavebox\SittingPengu
 \def\TitleImageLoad#1{%% target: 4cm
-\pingudefaults{eyes wink,body type=legacy,:mix-all=90!pingu@white!90!pingu@black}
+\pingudefaults{eyes wink,body type=legacy}
+\savebox\TTHolder{\tikz{\pingu[wings wave, banner, banner={tt}, eyes angry, body type=tilt-right, right foot sit,banner height=1.33cm,banner font=\BannerLetter,:mix-draw=90!pingu@white!90!pingu@black]}}
+\pingudefaultsappend{:mix-all=90!pingu@white!90!pingu@black}
 \savebox\PHolder{\tikz{\pingu[xshift=2cm,yshift=-5mm,small,wings grab,headband=kit-red100,name=@p,staff left,staff left raise=-5.5mm, staff right,staff right raise=0mm,left item angle=-15,right item angle=-15]}}
 \savebox\SHolder{\tikz{\pingu[:back,body=pingu@main!90!gray,wings wave,body type=chubby,hair=kit-orange100]}}
 \savebox\SecondE{\scalebox{.7}{\rotatebox{30}{\TitleLetter{e}}}}
 \savebox\SittingPengu{\tikz{\pingu[feet=sit, eyes shiny,halo,heart,small,body type=chubby]}}
-\savebox\TTHolder{\tikz{\pingu[wings wave, banner, banner={tt}, eyes angry, body type=tilt-right, right foot sit,banner height=1.33cm,banner font=\BannerLetter]}}
 \resizebox*!{4cm}{\begin{tikzpicture}
    \pingu[left wing wave,construction helmet, tie=kit-purple100,name=T]
    \pgfonlayer{very-background}

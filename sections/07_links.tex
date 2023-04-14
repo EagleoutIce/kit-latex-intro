@@ -2,16 +2,114 @@
 
 
 \subsection{Creating Titles}
-\begin{frame}
+\ltxpreview{MyFirstTitle}
+\begin{tcboutputlisting}
+\documentclass{article}
+\title{Why Penguins Are Better People!}
+\author{Florian Sihler\and Penguin Peter}
+\date{\today}
 
+\begin{document}
+\maketitle
+Hello there!
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Simple titles}
+   \begin{itemize}
+      \item Within your document, you can use \blatex{\\maketitle} to create a title(formatted by the set documentclass)
+      \item Within the preamble, you can use the commands \blatex{\\title}, \blatex{\\author}, and \blatex{\\date} to configure the title-information
+   \end{itemize}
+   \eblLoadLtx{MyFirstTitle}{graphics options={trim=4cm 20cm 4cm 4cm, clip}}{righthand width=.4\linewidth}
 \end{frame}
 
-\subsection{The \T{hyperref} Package}
-\begin{frame}[label=more_for_hyperref]{Heho}
+\ltxpreview{MyFirstTitle-scrartcl}
+\begin{tcboutputlisting}
+\documentclass{scrartcl}
+\title{Why Penguins Are Better People!}
+\author{Florian Sihler \and Penguin Peter}
+\date{\today}
 
+\begin{document}
+\maketitle
+Hello there!
+\end{document}
+\end{tcboutputlisting}
+\ltxpreview{MyFirstTitle-book}
+\begin{tcboutputlisting}
+\documentclass{book}
+\title{Why Penguins Are Better People!}
+\author{Florian Sihler\and Penguin Peter}
+\date{\today}
+
+\begin{document}
+\maketitle
+Hello there!
+\end{document}
+\end{tcboutputlisting}
+
+{\def\M#1{\T{\kern-1em\footnotesize\textcolor{gray}{\textbackslash documentclass\{}}\textbf{#1}\textcolor{gray}{\}}}
+\begin{frame}{How the documentclass changes the title-style}
+   \centering
+   \begin{tabular}{*3{>{\centering\arraybackslash}m{.32\linewidth}}}
+      \M{article}&\M{book}&\M{scrartcl}\\
+      \eblLoadLtx{MyFirstTitle}{graphics pages={1}}{comment only,righthand width=0pt}&%
+      \eblLoadLtx{MyFirstTitle-book}{graphics pages={1}}{comment only,righthand width=0pt}&%
+      \eblLoadLtx{MyFirstTitle-scrartcl}{graphics pages={1}}{comment only,righthand width=0pt}%
+   \end{tabular}
+\end{frame}
+}
+
+\def\HyperrefPkg{\texorpdfstring{\T{\link{https://www.ctan.org/pkg/hyperref}{hyperref}}}{\T{hyperref}}\xspace}
+
+\subsection[The hyperref Package]{The \HyperrefPkg Package}
+\begin{frame}[label=more_for_hyperref]{The \HyperrefPkg package}
+   \begin{itemize}
+      \itemsep8pt
+      \item We already created some references (with \blatex{\\tableofcontents}, \blatex{\\ref},~\ldots)
+      \item The \HyperrefPkg package automatically transforms these references into clickable hyperlinks
+      \item Furthermore it provides useful commands \begin{itemize}
+         \item \blatex{\\autoref} is similar to \blatex{\\ref} but tries to identify its target (Figure,~\ldots) and adds the appropriate prefix
+         \item \blatex{\\nameref} (due to the \T{\link{https://www.ctan.org/pkg/nameref}{nameref}} package) prints the name of the target (e.g. section name, figure caption,~\ldots)
+         \item \blatex{\\hypersetup} controls the color of links,~\ldots
+      \end{itemize}
+      \item It is advised, to load the \HyperrefPkg package after (almost) all other so it can modify their commands
+      \item The \T{\link{https://www.ctan.org/pkg/cleveref}{cleveref}} and \T{\link{https://www.ctan.org/pkg/varioref}{varioref}} packages are interesting as well!
+      \item All links within this document are done with \HyperrefPkg (and underlined with the help of \T{\link{https://github.com/EagleoutIce/latex-underline}{latex-underline}})
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{MyHyperDocument}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{xcolor,hyperref}
+\hypersetup{colorlinks=true, allcolors=orange}
+
+\begin{document}
+\tableofcontents
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{Why does everybody love penguins?}
+Here, we are in \autoref{sec:intro},
+to be found on page~\pageref{sec:intro}.
+The name is \nameref{sec:intro}.
+\end{document}
+\end{tcboutputlisting}
+\begin{frame}{A hyper document!}
+   \eblLoadLtx{MyHyperDocument}{graphics options={trim=4cm 19cm 4cm 4cm, clip}}{righthand width=.4\linewidth}
+   \begin{tikzpicture}[@O]
+      \node[below left=5mm,yshift=-1cm,align=right,gray,font=\itshape\footnotesize,text width=.35\linewidth] at(current page.east) {To avoid problems, I disabled the links within this preview and only activated their color.};
+   \end{tikzpicture}
 \end{frame}
 
 \subsection{Including Metadata}
-\begin{frame}
-
+\begin{frame}{Including metadata}
+   \begin{itemize}
+      \itemsep12pt
+      \item You can use \HyperrefPkg to embed metadata into your document
+      \item This is usually done for the title, author,~\ldots
+      \item You can use \blatex{\\hypersetup} to configure the metadata with \T{pdftitle} and \T{pdfauthor}
+      \item Alternatively the package-option \T{pdfusetitle} detects these automatically from the \blatex{\\title} and \blatex{\\author} commands
+   \end{itemize}
 \end{frame}
