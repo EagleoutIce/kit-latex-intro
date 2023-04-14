@@ -163,7 +163,7 @@ This is a \highlight{highlight}!
       \item You can refer to the arguments as \blatex{\#1}, \blatex{\#2}, \blatex{\#3},~\ldots
    \end{itemize}
    \item As basically everything is macro in \LaTeX{} the superficiality of this overview hurts the author mentally~--- \LaTeX{} is turing complete!
-   \lstfs{9}\eblLoadLtx{MyOwnMacro}{graphics options={trim=4.25cm 23cm 11cm 4cm, clip}}{righthand width=.35\linewidth}
+   \lstfs{9}\eblLoadLtx[morekeywords={[5]{\\highlight}}]{MyOwnMacro}{graphics options={trim=4.25cm 23cm 11cm 4cm, clip}}{righthand width=.35\linewidth}
 \end{itemize}
 \end{frame}
 
@@ -178,7 +178,7 @@ This is a \highlight{highlight}!
 \begin{frame}{Other \LaTeX{} formats}
    \begin{itemize}
       \itemsep8pt
-      \item Besides \LaTeX{} there are other formats
+      \item Besides \LaTeX{} (which is based on \TeX) there are other formats
       \item While they are not as popular as \LaTeX{} they are in some ways more powerful
       \item Lua\LaTeX{} offers Lua support and can load every font you have installed on your system
       \item If you are interested, read this \link{https://www.overleaf.com/learn/latex/Articles/The_TeX_family_tree\%3A_LaTeX\%2C_pdfTeX\%2C_XeTeX\%2C_LuaTeX_and_ConTeXt}{article}.

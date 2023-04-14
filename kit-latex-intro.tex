@@ -33,10 +33,24 @@
 % \subimport{sections/}{10_additional.tex}
 
 \section{Source}
-\begin{frame}
-   TODO: refs to the sources
-   TODO: mention that all examples have been compiled on system during compilation of this pdf
-   TODO: link to penguisn (and latex :D)
+\savebox\TempBoxA{\raisebox{-3pt}{\resizebox!{2\baselineskip}{\tikz{\pingu[feet=sit,eyes wink,sunglasses,lollipop left,bow tie, heart]}}}}
+\begin{frame}{Source}
+   \begin{itemize}
+      \itemsep8pt
+      \item The complete source code for these slides can be found on GitHub at:
+      \begin{center}
+         \link{https://github.com/EagleoutIce/kit-latex-intro}{https://github.com/EagleoutIce/kit-latex-intro}
+      \end{center}
+      \item No penguins were harmed in the making of these slides.
+      \begin{center}
+         \link{https://github.com/EagleoutIce/tikzpingus}{https://github.com/EagleoutIce/tikzpingus}
+      \end{center}
+      \item QR-Codes have been created with \FancyqrPkg!
+   \end{itemize}\bigskip
+
+   \begin{center}
+      \fancyqr[l color=kit-purple!60!black,r color=kit-purple!60!kit-blue!60!black,height=3.25cm,image={\usebox\TempBoxA},level=H]{https://github.com/EagleoutIce/kit-latex-intro}
+   \end{center}
 \end{frame}
 \backupend
 
