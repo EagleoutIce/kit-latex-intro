@@ -1,9 +1,100 @@
 \section{Listings}
+\ltxpreview{MyFirstListing}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{listings}
+
+\begin{document}
+\begin{lstlisting}[language=java]
+public static void main(String[] args) {
+   System.out.println("Hello World!");
+}
+\end{lstlisting}
+\end{document}
+\end{tcboutputlisting}
 
 \subsection{The \T{listings} Package}
 \begin{frame}{Typesetting code with the \T{listings} package}
    \begin{itemize}
-      \item
+      \item As some characters have a special meaning in \LaTeX{} (\T{\textbackslash}, \T{\#}, spaces~\ldots), we cannot just \say{paste} source code
+      \item With the \T{\link{https://www.ctan.org/pkg/listings}{listings}} package however, we can typeset source code in a very flexible way!
+      \item Let's look at an example with the \blatex{lstlisting} environment:
+      \eblLoadLtx[deletekeywords={[3]{java}}]{MyFirstListing}{graphics options={trim=4cm 23.25cm 6cm 4cm, clip}}{righthand width=.4\linewidth}
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{MyTTListing}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{xcolor,listings}
+\lstset{
+   basicstyle=\ttfamily,
+   stringstyle=\color{teal}
+}
+
+\begin{document}
+\begin{lstlisting}[language=java]
+public static void main(String[] args) {
+   System.out.println("Hello World!");
+}
+\end{lstlisting}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Changing the style of the code}
+   \begin{itemize}
+      \item To get the common teletype-font, we can change the \T{basicstyle} to use the \blatex{\\ttfamily}
+      \item As several options will remain the same for all (or at least most) listings, we can set them with \blatex{\\lstset\{<options>\}}
+      \item Similarly, we can make use of colors
+      \lstfs{9}\eblLoadLtx[deletekeywords={[3]{java}}]{MyTTListing}{graphics options={trim=4cm 21.75cm 6cm 4cm, clip}}{righthand width=.4\linewidth}
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{MyFontListing}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor,listings}
+\usepackage[scaled]{beramono}
+\lstset{basicstyle=\ttfamily,
+   stringstyle=\color{teal}}
+
+\begin{document}
+\begin{lstlisting}[language=java]
+public static void main(String[] args) {
+   System.out.println("Hello World!");
+}
+\end{lstlisting}
+\end{document}
+\end{tcboutputlisting}
+
+\savebox\TempBoxA{\fancyqr[l color=kit-green!60!black,r color=kit-green!60!kit-blue!60!black,height=3.75cm,level=H]{https://tug.org/FontCatalogue/}}
+\begin{frame}{Changing the font}
+   \begin{itemize}
+      \item Sadly, the default teletypefont does not come with a boldface variant \begin{itemize}
+         \item We can change it by simply loading a package (e.g., \T{\link{https://www.ctan.org/pkg/bera}{beramono}})
+         \item Be sure to set the font-encoding correctly (e.g., \T{T1})
+      \end{itemize}
+      \item For a huge list of font-packages see the \link{https://tug.org/FontCatalogue/}{{\LaTeX}, font catalogue}
+      \lstfs{9}\eblLoadLtx[deletekeywords={[3]{java}}]{MyFontListing}{graphics options={trim=4cm 21.75cm 6cm 4cm, clip}}{righthand width=.4\linewidth,before lower={\vspace*{-3\baselineskip}}}
+   \end{itemize}
+   \begin{tikzpicture}[@O]
+      \node[above left=2mm,yshift=1.25cm] at(current page.south east) {\scalebox{.4}{\usebox\TempBoxA}};
+   \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Where to look for more}
+   \begin{itemize}
+      \itemsep8pt
+      \item The \link{http://mirrors.ctan.org/macros/latex/contrib/listings/listings.pdf}{documentation} gives a great overview of the packages' capabilities \begin{itemize}
+         \item You can add your own language with \solGet{command}{\textbackslash lstdefinelanguage}
+         \item You can create your own code-environment (e.g., with defaults) using \solGet{command}{\textbackslash lstnewenvironment}
+         \item You can create a letter shortcut with \solGet{command}{\textbackslash lstMakeShortInline}
+         \item With \T{numbers=left} you can add line numbers on the left side
+         \item \T{showstringspaces=false} removes the \T{\textvisiblespace} symbols within strings
+         \item All code shown in this presentation is typeset with this package
+      \end{itemize}
+      \item If you want to enter umlauts or perform replacements, have a look at literates and \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings\#Encoding_issue}{wikibooks}
    \end{itemize}
 \end{frame}
 
