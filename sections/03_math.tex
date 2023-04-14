@@ -30,7 +30,11 @@
 \begin{frame}{Special symbols}
    \begin{itemize}
       \itemsep8pt
-      \item There are a lot of special symbols you can use (\blatex{\\alpha}, \blatex{\\sin}, \blatex{\\infty},~\ldots)
+      \item There are a lot of special symbols you can use \begin{itemize}
+         \item \blatex{\\alpha}, \blatex{\\beta}, \blatex{\\gamma},~\ldots{} for greek symbols
+         \item \blatex{\\sin}, \blatex{\\sum}, \blatex{\\prod}, \blatex{\\int} (integral) for common functions \& operations
+         \item \blatex{\\infty} (infinity), \blatex{\\neq} (not equal),~\ldots{} for other common symbols
+      \end{itemize}
       \item Although they are intuitive, you can use \link{https://detexify.kirelabs.org/classify.html}{detexify.kirelabs.org} to draw the symbol you want and get the corresponding \LaTeX-command!
       \item You can use \blatex{^\{X\}} and \blatex{\_\{Y\}} to write (even nested) super- and subscripts
    \end{itemize}
@@ -52,7 +56,7 @@ Is it \(1\), \(-1\), \(\pm1\), or even \(\geq 1\)?
 
 \begin{frame}{Some simple formulas}
 \soldisablenumhl\tcbset{ebl@listing@post/.style={sidebyside=false}}\begin{itemize}
-   \item Let's combine our math-knowledge:
+   \item Let's combine our math-knowledge (using \blatex{\\frac} to typeset a fraction):
    \eblLoadLtx[morekeywords={[5]{\\displaystyle}}]{SimpleFormulas}{graphics options={trim=3cm 24cm 3cm 4cm, clip},width={.8\linewidth}}{listing above comment,width=\linewidth}
 \end{itemize}
 \end{frame}
@@ -64,7 +68,7 @@ Is it \(1\), \(-1\), \(\pm1\), or even \(\geq 1\)?
       \item The \T{\link{https://www.ctan.org/pkg/mathtools}{mathtools}} package offers a lot of useful features for math typesetting
       \item Together with it, we want to learn about two important environments:
          \begin{description}[equation:]
-            \item[equation:] For a single, numbered formula you can reference
+            \item[equation:] For a single, numbered formula (you can reference)
             \item[align:] For aligning multiple formulas using the \blatex{\&}-character
          \end{description}
       \item Some useful notes: \begin{itemize}
