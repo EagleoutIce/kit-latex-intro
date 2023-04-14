@@ -70,8 +70,9 @@ Hello World~\cite{Breckel2021}.
 \begin{document}
 \begin{tikzpicture}
    \draw (0,0) circle[radius=2cm];
-   \draw[cyan,->] (0,0) -- (2,0) node[above right] {this is the point!};
-   \node (supername) at (current bounding box.south) {Hey!};
+   \draw[cyan,->] (0,0) -- (2,0)
+      node[right] {this is the point!};
+   \node[below] at (current bounding box.south) {Hey!};
 \end{tikzpicture}
 \end{document}
 \end{tcboutputlisting}
@@ -81,39 +82,105 @@ Hello World~\cite{Breckel2021}.
       \item How to draw anything? \TikzPkg is the way to go \begin{itemize}
          \item This monster of a package allows a lot of drawing in \LaTeX{} it has an incredible learning curve
          \item Want to plot something? use \PgfplotsPkg
-         \item Want boxes? \TcolorboxPkg
+         \item Want boxes? use \TcolorboxPkg
       \end{itemize}
-      \eblLoadLtx{MyFirstTikz}{graphics options={trim=4cm 20cm 3cm 4cm, clip}}{righthand width=.5\linewidth}
+      \lstfs{9}\eblLoadLtx{MyFirstTikz}{graphics options={trim=4.25cm 19cm 9.5cm 4cm, clip}}{righthand width=.35\linewidth}
    \end{itemize}
 \end{frame}
 
 \begin{frame}{Even the penguins!}
-
+   \begin{itemize}
+      \itemsep8pt
+      \item All the little penguins (\raisebox{-3pt}{\resizebox!\baselineskip{\tikz{\pingu[feet=sit,eyes shiny,conical hat]}}}) you see are made with \TikzPkg
+      \item Interested? See the \TikzpingusPkg
+      \item Actively developed on \link{https://github.com/EagleoutIce/tikzpingus}{GitHub} (by me, the author)
+   \end{itemize}
+   \begin{center}
+      \tikz{\pingu[eyes shiny,eye patch right, glasses, right wing grab, cup,heart, body type=legacy,left wing wave, horse left]}
+   \end{center}
 \end{frame}
 
 \subsection{Changing the Document}
-\begin{frame}{The \T{geometry} package}
+\ltxpreview{MyAmazingGeometry}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage[margin=5mm,paper=a5paper,
+      landscape,showframe]{geometry}
 
+\begin{document}
+Hello World!
+\end{document}
+\end{tcboutputlisting}
+\begin{frame}{The \GeometryPkg package}
+   \begin{itemize}
+      \item If you want to change the margins, the paper size, or the page layout, you can use the \GeometryPkg package\medskip
+
+      \eblLoadLtx{MyAmazingGeometry}{}{righthand width=.4\linewidth}
+   \end{itemize}
 \end{frame}
 
-\begin{frame}{The \T{parskip} package}
+\ltxpreview{MyFunWithParindent}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{parskip}
 
-\end{frame}
+\begin{document}
+This is a paragraph!
 
-\begin{frame}{Other document classes}
-
+And this is another one!
+No indentation, just vertical space!
+\end{document}
+\end{tcboutputlisting}
+\begin{frame}{The \ParskipPkg package}
+   \begin{itemize}
+      \item Do you dislike the indentation performed at each paragraph (\blatex{\\parindent})?
+      \item Consider the \ParskipPkg package which exchanges the horizontal indentation for a vertical one
+      \eblLoadLtx{MyFunWithParindent}{graphics options={trim=4.25cm 24cm 6cm 4cm, clip}}{righthand width=.45\linewidth}
+      % \item Or you can set \blatex{\\setlength\{\\parindent\}\{0pt\}} and \blatex{\\setlength\{\\parskip\}\{\baselineskip\}} manually.
+   \end{itemize}
 \end{frame}
 
 \subsection{Custom Macros and More}
-\begin{frame}
+\ltxpreview{MyOwnMacro}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{xcolor}
 
+\newcommand{\highlight}[1]{\textbf{#1ed text}}
+
+\begin{document}
+This is a \highlight{highlight}!
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Defining your own macros}
+\begin{itemize}
+   \itemsep4pt
+   \item For now, we have only used what \LaTeX{} and other packages provided us
+   \item \blatex{\\newcommand} however allows you to define your own commands!
+   \item These commands can take numbered arguments and work similar to macro-replacements \begin{itemize}
+      \item \blatex{\\newcommand[<number-of-arguments>]\{<body>\}}
+      \item You can refer to the arguments as \blatex{\#1}, \blatex{\#2}, \blatex{\#3},~\ldots
+   \end{itemize}
+   \item As basically everything is macro in \LaTeX{} the superficiality of this overview hurts the author mentally~--- \LaTeX{} is turing complete!
+   \lstfs{9}\eblLoadLtx{MyOwnMacro}{graphics options={trim=4.25cm 23cm 11cm 4cm, clip}}{righthand width=.35\linewidth}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{And macros?}
+   \begin{center}
+      Please inform yourself about how you can use macros to your advantage.\smallskip
+
+      The fun of \LaTeX{} starts with defining your own!
+   \end{center}
 \end{frame}
 
 \begin{frame}{Other \LaTeX{} formats}
-
-\end{frame}
-
-
-\begin{frame}{How to inform yourself}
-TODO: mention Texdoc/CTAN,...
+   \begin{itemize}
+      \itemsep8pt
+      \item Besides \LaTeX{} there are other formats
+      \item While they are not as popular as \LaTeX{} they are in some ways more powerful
+      \item Lua\LaTeX{} offers Lua support and can load every font you have installed on your system
+      \item If you are interested, read this \link{https://www.overleaf.com/learn/latex/Articles/The_TeX_family_tree\%3A_LaTeX\%2C_pdfTeX\%2C_XeTeX\%2C_LuaTeX_and_ConTeXt}{article}.
+   \end{itemize}
 \end{frame}
