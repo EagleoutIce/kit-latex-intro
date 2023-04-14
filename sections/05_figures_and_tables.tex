@@ -1,16 +1,255 @@
 \section{Figures \& Tables}
 
-\subsection{Including Images}
-\begin{frame}
+\ltxpreview{MyFirstImage}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{graphicx}
 
+\begin{document}
+   Look:
+   \includegraphics{images/santa-pingu.png}
+\end{document}
+\end{tcboutputlisting}
+
+\subsection{Including Images}
+\begin{frame}{Let's include an image}
+   \begin{itemize}
+      \itemsep8pt
+      \item In order to load external graphics, we use the \T{\link{https://www.ctan.org/pkg/graphicx}{graphicx}} package
+      \item With it, we get the \blatex{\\includegraphics}-command which loads an image based on its path
+      \eblLoadLtx{MyFirstImage}{graphics options={trim=4cm 18cm 6cm 4cm, clip}}{righthand width=.4\linewidth}
+      \item While you do not need to put the image in a separate folder, we recommend you doing so to keep your project organized
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{MyTransformedImage}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{graphicx}
+
+\begin{document}
+   \includegraphics[width=7.5cm]
+      {images/santa-pingu.png}
+   \includegraphics[scale=0.25, angle=30]
+      {images/santa-pingu.png}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Transform images}
+   \begin{itemize}
+      \item You can pass several options to the \blatex{\\includegraphics}-command \begin{description}[keepaspectratio:]
+         \item[width \& height:] To resize the image to a specific width or height
+         \item[scale:] To scale the image by a given factor
+         \item[keepaspectratio:] Keep the aspect ratio of the image
+         \item[angle:] Rotate the image by a given angle
+      \end{description}
+   \end{itemize}
+   \eblLoadLtx{MyTransformedImage}{graphics options={trim=4cm 18.5cm 4cm 4cm, clip}}{righthand width=.4\linewidth}
+\end{frame}
+
+\savebox\TempBoxA{\fancyqr[l color=kit-green!60!black,r color=kit-green!60!kit-blue!60!black,height=3.75cm,level=H]{https://github.com/tweh/tex-units}}
+\begin{frame}{Usefule notes on images}
+   \begin{itemize}
+      \itemsep8pt
+      \item Make sure your images have a sufficient resolution
+      \item The command \blatex{\\linewidth} holds the width of the current line
+      \item \blatex{\\textwidth} holds the full width (e.g., both columns in a multi-column document)
+      \item You can prefix them with a factor (like \blatex{0.5\\linewidth})
+      \item Otherwise, there are several units at your disposal (\T{mm}, \T{cm}, \T{pt},~\ldots)\\See \link{https://github.com/tweh/tex-units}{https://github.com/tweh/tex-units} for a pretty overview
+   \end{itemize}
+   \begin{tikzpicture}[@O]
+      \node[above left=2mm,yshift=1.25cm] at(current page.south east) {\scalebox{.6}{\usebox\TempBoxA}};
+   \end{tikzpicture}
 \end{frame}
 
 \subsection{Placing Images}
-\begin{frame}
+\ltxpreview{MyFigureEnvironment}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{blindtext,graphicx}
 
+\begin{document}
+\blindtext
+
+\begin{figure}
+\centering
+\includegraphics{images/santa-pingu.png}
+\caption{Santa Penguin}
+\end{figure}
+
+\blindtext
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Placing Images}
+   \begin{itemize}
+      \item Normally you do not want figures to be placed in the middle of a paragraph but keep the text together
+      \item Therefore, \LaTeX{} provides the \blatex{figure} environment (which allows for a \blatex{\\caption})
+      \item The example uses the \T{\link{https://www.ctan.org/pkg/blindtext}{blindtext}} package to provide dummy text
+      \lstfs{9}\eblLoadLtx{MyFigureEnvironment}{graphics options={trim=4cm 15cm 4cm 4cm, clip}}{righthand width=.4\linewidth}
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{MyFigureReference}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{graphicx}
+
+\begin{document}
+\begin{figure}
+\centering \includegraphics{images/santa-pingu.png}
+\caption{Santa Penguin}
+\label{fig:santa-pingu}
+\end{figure}
+
+Let's have a look at figure~\ref{fig:santa-pingu}
+on page~\pageref{fig:santa-pingu}.
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Referencing figures}
+   \begin{itemize}
+      \item Similar to equations you can reference figures with \blatex{\\label} and \blatex{\\ref} \begin{itemize}
+         \item Besides \blatex{\\ref}, there are other commands like \blatex{\\pageref} which give you the page number
+         \item A package like \T{\link{https://www.ctan.org/pkg/hyperref}{hyperref}} allows for much more (\hlink{more_for_hyperref}{see page~{\ref*{more_for_hyperref}}})
+      \end{itemize}
+      \item Make sure, that \blatex{\\label} appears \textit{after} the caption!
+      \lstfs{9}\eblLoadLtx[add to literate={at\ figure}{{at figure}}9]{MyFigureReference}{graphics options={trim=5cm 16cm 6cm 4cm, clip}}{righthand width=.4\linewidth}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Fine-tune figure placement}
+   \begin{itemize}
+      \itemsep8pt
+      \item You can specify the positions that \LaTeX{} tries to place the \say{figure-float} \begin{description}[\textbf{b}ottom\,:]
+         \item[\textbf{t}op:] allow to place at the top of the page
+         \item[\textbf{b}ottom:] allow to place at the bottom of the page
+         \item[\textbf{h}ere:] allow to place at position in document
+         \item[\textbf{p}age:] allow to place on its own page
+      \end{description}
+      \item There are others, like \begin{itemize}
+         \item \T{H} to force the \textit{here} placement (from the \T{\link{https://www.ctan.org/pkg/float}{float}} package)
+         \item \solGet{command}{\textbackslash FloatBarrier} to limit the float position (from the \T{\link{https://www.ctan.org/pkg/placeins}{placeins}} package)
+      \end{itemize}
+      \item You can specify them in any combination (\link{https://tex.stackexchange.com/questions/35125/how-to-use-the-placement-options-t-h-with-figures}{the order does not matter})
+      \item Let the \cancel{force} float guide you (do not overdo it with forced placements, \LaTeX{} is usually pretty good)
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{FineTunedFigurePlacement}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{blindtext,graphicx}
+
+\begin{document}
+\blindtext
+
+\begin{figure}[hb]
+\centering
+\includegraphics{images/santa-pingu.png}
+\caption{Santa Penguin}
+\end{figure}
+
+\blindtext
+\end{document}
+\end{tcboutputlisting}
+\begin{frame}{Example for figure placement}
+   \eblLoadLtx{FineTunedFigurePlacement}{graphics options={trim=4cm 12cm 4cm 4cm, clip}}{righthand width=.4\linewidth}
+\end{frame}
+
+\begin{frame}{There is a lot more}
+   \begin{itemize}
+      \itemsep8pt
+      \item You can let text go around your floats with the \T{\link{https://www.ctan.org/pkg/wrapfig2}{wrapfig2}} package
+      \item Captions can be controlled with the \T{\link{https://ctan.org/pkg/caption}{caption}} package
+      \item Subfigures can be obtained by using the \T{\link{https://www.ctan.org/pkg/subcaption}{subcaption}} package
+      \item You can create your own floats (like figures) with the \T{\link{https://www.ctan.org/pkg/newfloat}{newfloat}} package
+      \item If you want a list of all figures, you can use the \blatex{\\listoffigures} command (similar to \blatex{\\tableofcontents})
+   \end{itemize}
 \end{frame}
 
 \subsection{Typesetting Tables}
-\begin{frame}
+\ltxpreview{MyFirstTabular}
+\begin{tcboutputlisting}
+\documentclass{article}
 
+\begin{document}
+\begin{tabular}{lc|c|r}
+   \hline
+   \textbf{Important} & Columns & Look & Good \\
+   \hline \hline
+   1                  & 2       & 3    & 4    \\
+   5                  & 6       & 7    & 8    \\
+   \hline
+\end{tabular}
+\end{document}
+\end{tcboutputlisting}
+
+
+\begin{frame}{Typeset a simple table}
+   \begin{itemize}
+      \item Let's start with an example:
+      \soldisablenumhl\lstfs{9}\eblLoadLtx{MyFirstTabular}{graphics options={trim=4cm 23cm 7.5cm 4cm, clip}}{righthand width=.4\linewidth}
+      \item The \blatex{tabular} environment takes the desired column specification as its first argument \begin{itemize}
+         \item Alignments for (\textbf{l}eft, \textbf{c}enter, and \textbf{r}ight)
+         \item Vertical lines with \textbf{|}, horizontal lines with \blatex{\\hline}
+         \item Use \blatex{\&} to separate columns and \blatex{\\\\} to start a new row
+      \end{itemize}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Improving your tabular}
+   \begin{itemize}
+      \itemsep8pt
+      \item The \T{\link{https://www.ctan.org/pkg/booktabs}{booktabs}} package improves the look of your tabular \begin{itemize}
+         \item It provides commands like \blatex{\\toprule}, \blatex{\\midrule}, and \blatex{\\bottomrule} to replace \blatex{\\hline}
+      \end{itemize}
+      \item \T{\link{https://ctan.org/pkg/array}{array}} improves on the \blatex{tabular} environment and provides a lot more \begin{itemize}
+         \item You can specify custom columns, and a prefix/suffix for cells
+         \item Get centered columns with a fixed with (e.g. \blatex{m\{2cm\}})
+      \end{itemize}
+      \item Similar to the \blatex{figure}, there is the \blatex{table} float for your tables
+   \end{itemize}
+\end{frame}
+
+\ltxpreview{MyBooktabsTabular}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{blindtext,array,booktabs}
+
+\begin{document}
+\begin{table}
+\centering
+\begin{tabular}{l c m{1cm} r}
+   \toprule
+      \textbf{Important} & Columns & Look & Good \\
+   \midrule
+      1 & 2 & pretty long text for a one cm column & 4 \\
+   \bottomrule
+\end{tabular}
+\caption{My Great Table}
+\label{tbl:mytable}
+\end{table}
+Look at page~\pageref{tbl:mytable}.
+\blindtext
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Example for our new table}
+   \lstfs{9}\eblLoadLtx[add to literate={1\ }{{1 }}2 {2\ }{{2 }}2 {3\ }{{3 }}2 {4\ }{{4 }}2]{MyBooktabsTabular}{graphics options={trim=4cm 20cm 4cm 4cm, clip}}{righthand width=.4\linewidth}
+\end{frame}
+
+\savebox\TempBoxA{\fancyqr[l color=kit-green!60!black,r color=kit-green!60!kit-blue!60!black,height=3.75cm,level=H]{https://www.tablesgenerator.com/}}
+\begin{frame}{Again, there is so much more}
+   \begin{itemize}
+      \itemsep8pt
+      \item The \T{\link{https://www.ctan.org/pkg/tabularx}{tabularx}} package allows for automatic column widths with its \T{X} column
+      \item Besides amazing support for typesetting units, the \T{\link{https://www.ctan.org/pkg/siunitx}{siunitx}} provides the \T{S} column to align numbers at will
+      \item You can use the \T{\link{https://www.ctan.org/pkg/longtable}{longtable}} package to typeset tables that span multiple pages
+      \item Although the \T{\link{https://www.ctan.org/pkg/tabu}{tabu}} package is not as steadily maintained, it still offers a lot of great things (like alternating row colors)
+      \item If you dislike the ways to specify tables, you can use an online generator like \link{https://www.tablesgenerator.com/}{https://www.tablesgenerator.com/}
+   \end{itemize}
+   \begin{tikzpicture}[@O]
+      \node[above left=2mm,yshift=1.25cm] at(current page.south east) {\scalebox{.6}{\usebox\TempBoxA}};
+   \end{tikzpicture}
 \end{frame}

@@ -13,10 +13,12 @@
 \let\ULdepth\p@
 \def\fancyulbackground{white}% so that it adapts with the beamer
 \colorlet{url@line@color}{kit-blue!26!white}
+\hypersetup{colorlinks=false}
 \fancyulcolor{url@line@color}
 % we make the auto detection of the depth bigger
 \def\update@ul{\setbox\z@\hbox{{(j}}\edef\ULthickness{\the\dimexpr.235\dp\z@}}
 % define a link macro that can be used with href and fancyul
+% \color{kit-purple!50!kit-blue!15!black}
 \DeclareRobustCommand*\link{\hyper@normalise\link@do}
 \def\link@do#1#2{\leavevmode\hskip-2\p@\href{#1}{\update@ul\hskip2\p@\fancyul{#2}}}% thinspace for some nicer padding
 \DeclareRobustCommand*\hlink{\hyper@normalise\hlink@do}
@@ -26,6 +28,8 @@
 \long\def\beamer@ref#1{\hlink@do{#1}{{\beamer@origref*{#1}}}}% the extra set of braces is for soul so that it can work with braces
 }
 \makeatother
+
+\usepackage{cancel}
 
 \usepackage[most]{tcolorbox}
 \usepackage{lib/util/beamer-latex-preview}
@@ -40,7 +44,7 @@
 \lstcolorlet{keywordB}{kit-brown!10!gray}
 \lstcolorlet{keywordC}{kit-blue70}
 \lstcolorlet{command}{kit-blue}
-\lstcolorlet{numbers}{kit-purple70}
+\lstcolorlet{numbers}{kit-purple70!70!kit-blue}
 
 \titleimage{X} % fake by load so we can have pingus :3
 % we force scale for fancy(er) proprtions
