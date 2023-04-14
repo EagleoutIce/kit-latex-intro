@@ -1,27 +1,102 @@
 \section{More}
 
 \begin{frame}[plain,c]{}
-   \vspace*{4em}\centering\Huge\bfseries There is so much more,\ldots
+   \vspace*{4.5em}\centering\Huge\bfseries There is so much more!
 \end{frame}
 
 
 \subsection{Bibliographies}
 
+\ltxpreview{MyLittleBib}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage[backend=biber]{biblatex}
+
+\addbibresource{data/example.bib}
+
+\begin{document}
+Hello World~\cite{Breckel2021}.
+\printbibliography
+\end{document}
+\end{tcboutputlisting}
+
 \begin{frame}{Bibliographies}
+   \begin{itemize}
+      \item Citing is important, especially for scientific articles
+      \item For this, have a look at the \T{\link{https://www.ctan.org/pkg/biblatex}{biblatex}} package (you have to run \solGet{keywordA}{biber})
+      \eblLoadLtx{MyLittleBib}{graphics options={trim=4cm 21.5cm 3cm 4cm, clip}}{righthand width=.5\linewidth,run biber, run pdflatex={--shell-escape}}
+      \item There are tools to create and manage these bibliographies (\link{https://www.zotero.org/}{Zotero}, \link{https://www.jabref.org/}{JabRef},~\ldots)
+      \item These reference work with \HyperrefPkg (and there is so much more)
+   \end{itemize}
 \end{frame}
 
-\subsection{Making Presentations}
-\begin{frame}{The \T{beamer} documentclass}
 
+\subsection{Making Presentations}
+
+\ltxpreview{MyLittleBeamer}
+\begin{tcboutputlisting}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{CambridgeUS}
+\title{Amazing Presentation}
+\author{Florian Sihler}
+\date{Yesterday}
+
+\begin{document}
+\maketitle
+\begin{frame}{Hello World}
+   \begin{itemize}
+      \item Hello
+      \item World
+   \end{itemize}
+\end{frame}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Presentations --- with the \BeamerCls document class}
+   \begin{itemize}
+      \item The document you are seeing is written in \LaTeX{} using the \BeamerCls-based template from the \link{https://sdq.kastel.kit.edu/wiki/Dokumentvorlagen}{SDQ}.
+      \item \BeamerCls is really powerful and allows for animations, multiple document versions, and more\medskip
+      \lstfs{9}\eblLoadLtx{MyLittleBeamer}{}{righthand width=.3\linewidth}
+   \end{itemize}
 \end{frame}
 
 \subsection{Ti\textit{k}Z --- The Behemoth}
-\begin{frame}{Ti\textit{k}Z --- The Behemoth}
+
+\ltxpreview{MyFirstTikz}
+\begin{tcboutputlisting}
+\documentclass{article}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+   \draw (0,0) circle[radius=2cm];
+   \draw[cyan,->] (0,0) -- (2,0) node[above right] {this is the point!};
+   \node (supername) at (current bounding box.south) {Hey!};
+\end{tikzpicture}
+\end{document}
+\end{tcboutputlisting}
+
+\begin{frame}{Ti\textit{k}Z --- the behemoth}
+   \begin{itemize}
+      \item How to draw anything? \TikzPkg is the way to go \begin{itemize}
+         \item This monster of a package allows a lot of drawing in \LaTeX{} it has an incredible learning curve
+         \item Want to plot something? use \PgfplotsPkg
+         \item Want boxes? \TcolorboxPkg
+      \end{itemize}
+      \eblLoadLtx{MyFirstTikz}{graphics options={trim=4cm 20cm 3cm 4cm, clip}}{righthand width=.5\linewidth}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}{Even the penguins!}
 
 \end{frame}
 
 \subsection{Changing the Document}
 \begin{frame}{The \T{geometry} package}
+
+\end{frame}
+
+\begin{frame}{The \T{parskip} package}
 
 \end{frame}
 

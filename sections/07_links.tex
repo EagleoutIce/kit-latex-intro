@@ -49,7 +49,7 @@ Hello there!
 \end{tcboutputlisting}
 
 {\def\M#1{\T{\kern-1em\footnotesize\textcolor{gray}{\textbackslash documentclass\{}}\textbf{#1}\textcolor{gray}{\}}}
-\begin{frame}{How the documentclass changes the title-style}
+\begin{frame}{How the document class changes the title-style}
    \centering
    \begin{tabular}{*3{>{\centering\arraybackslash}m{.32\linewidth}}}
       \M{article}&\M{book}&\M{scrartcl}\\
@@ -59,8 +59,6 @@ Hello there!
    \end{tabular}
 \end{frame}
 }
-
-\def\HyperrefPkg{\texorpdfstring{\T{\link{https://www.ctan.org/pkg/hyperref}{hyperref}}}{\T{hyperref}}\xspace}
 
 \subsection[The hyperref Package]{The \HyperrefPkg Package}
 \begin{frame}[label=more_for_hyperref]{The \HyperrefPkg package}
@@ -106,7 +104,7 @@ The name is \nameref{sec:intro}.
 \subsection{Including Metadata}
 \begin{frame}{Including metadata}
    \begin{itemize}
-      \itemsep12pt
+      \itemsep8pt
       \item You can use \HyperrefPkg to embed metadata into your document
       \item This is usually done for the title, author,~\ldots
       \item You can use \blatex{\\hypersetup} to configure the metadata with \T{pdftitle} and \T{pdfauthor}

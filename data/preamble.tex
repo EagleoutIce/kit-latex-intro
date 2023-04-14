@@ -139,3 +139,11 @@
 }
 
 \newsavebox\TempBoxA
+
+\def\PkgName#1{\texorpdfstring{\T{\link{https://www.ctan.org/pkg/#1}{#1}}}{\T{#1}}\xspace}
+\def\HyperrefPkg{\PkgName{hyperref}}
+\def\BeamerCls{\PkgName{beamer}}
+\def\TikzPkg{\PkgName{tikz}}
+\def\PgfplotsPkg{\PkgName{pgfplots}}
+\def\TcolorboxPkg{\PkgName{tcolorbox}}
+
