@@ -156,20 +156,22 @@ This is a \highlight{highlight}!
 
 \begin{frame}{Some general notes}
    \begin{itemize}
+      \itemsep8pt
       \item You can learn most things on a need-to-have basis
          \begin{itemize}
             \item \textit{Want quotes?}\\
                   Use the \CsquotesPkg package and its \blatex{\\enquote} command
             \item \textit{Dislike the name of a command?}\\
-                  The \blatex{\\let} command allows you to create a static alias for most commands (\blatex{\\let\\say\\enquote})
+                  The \blatex{\\let} command allows you to create a static alias for most commands (\T{\solGet{command}{\textbackslash let}\solGet{command}{\textbackslash say}\solGet{command}{\textbackslash enquote}})
             \item \textit{Desire more imperative programming constructs?}\\
-                  Start by looking at the \EtoolboxPkg package, and the \blatex{\\foreach} command from \TikyPkg.
+                  Start by looking at the \EtoolboxPkg package, and the \blatex{\\foreach} command from \TikzPkg.
             \item \textit{Crave for an index?}\\
                   Start with the \ImakeidxPkg package
          \end{itemize}
       \item If you however, want to understand \TeX{} in more detail, there are great resources \begin{itemize}
-         \item TexByTopic
-         \item TexBook
+         \item Overleaf itself offers good \link{https://www.overleaf.com/learn/latex/Tutorials}{tutorials}
+         \item The \link{http://tug.ctan.org/info/texbytopic/TeXbyTopic.pdf}{TexByTopic} book grants deep insights into the inner working of \TeX{}
+         \item The original \link{https://www-cs-faculty.stanford.edu/~knuth/abcde.html\#texbk}{\TeX book} is a great resource as well
       \end{itemize}
    \end{itemize}
 \end{frame}
