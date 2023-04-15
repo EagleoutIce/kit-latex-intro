@@ -153,6 +153,27 @@ This is a \highlight{highlight}!
 \end{document}
 \end{tcboutputlisting}
 
+
+\begin{frame}{Some general notes}
+   \begin{itemize}
+      \item You can learn most things on a need-to-have basis
+         \begin{itemize}
+            \item \textit{Want quotes?}\\
+                  Use the \CsquotesPkg package and its \blatex{\\enquote} command
+            \item \textit{Dislike the name of a command?}\\
+                  The \blatex{\\let} command allows you to create a static alias for most commands (\blatex{\\let\\say\\enquote})
+            \item \textit{Desire more imperative programming constructs?}\\
+                  Start by looking at the \EtoolboxPkg package, and the \blatex{\\foreach} command from \TikyPkg.
+            \item \textit{Crave for an index?}\\
+                  Start with the \ImakeidxPkg package
+         \end{itemize}
+      \item If you however, want to understand \TeX{} in more detail, there are great resources \begin{itemize}
+         \item TexByTopic
+         \item TexBook
+      \end{itemize}
+   \end{itemize}
+\end{frame}
+
 \begin{frame}{Defining your own macros}
 \begin{itemize}
    \itemsep4pt
