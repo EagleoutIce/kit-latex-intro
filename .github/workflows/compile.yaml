@@ -1,4 +1,4 @@
-name: build the documentation
+name: build the presentation
 
 "on":
   push:
