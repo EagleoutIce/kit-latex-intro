@@ -16,18 +16,27 @@ jobs:
           submodules: 'recursive'
           lfs: true
 
+      - name: get poppler-utils for preview
+        run: sudo apt install poppler-utils
+
       - name: 📄 Compile the Documentation
         uses: xu-cheng/latex-action@v2
         with:
           # ensure local
           pre_compile: "tlmgr remove --force tikzpingus"
           root_file: kit-latex-intro.tex
+        
+      - name: Generate Preview
+        run: |
+          pdftoppm -png -f 1 -l 1 build/kit-latex-intro.pdf preview
+          mv preview-* preview.png
       - name: Commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -f "build/kit-latex-intro.pdf"
+          git add -f "build/kit-latex-intro.pdf" "preview.png"
           git commit -m "Newly compiled data"
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
