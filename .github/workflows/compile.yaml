@@ -28,13 +28,13 @@ jobs:
         
       - name: Generate Preview
         run: |
-          pdftoppm -png -f 1 -l 1 build/kit-latex-intro.pdf preview
+          pdftoppm -png -f 1 -l 1 kit-latex-intro.pdf preview
           mv preview-* preview.png
       - name: Commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -f "build/kit-latex-intro.pdf" "preview.png"
+          git add -f "kit-latex-intro.pdf" "preview.png"
           git commit -m "Newly compiled data"
 
       - name: Push changes
