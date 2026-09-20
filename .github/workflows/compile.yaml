@@ -5,37 +5,41 @@ name: build the presentation
     branches: [master, main]
   workflow_dispatch:
 
+permissions:
+  contents: write
 
 jobs:
   build-pdfs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-          lfs: true
 
       - name: get poppler-utils for preview
-        run: sudo apt install poppler-utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
 
       - name: 📄 Compile the Documentation
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           # ensure local
-          pre_compile: "tlmgr remove --force tikzpingus"
+          pre_compile: "tlmgr remove --force tikzpingus || true"
           root_file: kit-latex-intro.tex
-        
+
       - name: Generate Preview
         run: |
           pdftoppm -png -f 1 -l 1 kit-latex-intro.pdf preview
           mv preview-* preview.png
+
       - name: Commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -f "kit-latex-intro.pdf" "preview.png"
-          git commit -m "Newly compiled data"
+          git diff --quiet --cached || git commit -m "Newly compiled data"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
